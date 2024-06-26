@@ -1,0 +1,268 @@
+<div class="modal fade" data-backdrop="static" tabindex="-1" role="dialog" id="creditDetails">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+      <form method="post" >
+       <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+           <h4 class="modal-title"><i class="fa fa-fw fa-chevron-right"></i> Filter & Search</h4>
+        </div>
+        <div class="modal-body"> 
+            <div class="tabbable tabs-top">
+                <ul class="nav nav-tabs">
+                    <li ng-class="getTabClass(1)" ng-click="setActiveTab(1)">
+                        <a href="javascript:;" data-toggle="tab">Credit Detail</a>
+                    </li>
+                    <li ng-class="getTabClass(2)" ng-click="setActiveTab(2)">
+                        <a href="javascript:;" data-toggle="tab">Credit Summary</a>
+                    </li>
+                    <li ng-class="getTabClass(4)" ng-click="setActiveTab(4)">
+                        <a href="javascript:;" data-toggle="tab">Adjustment</a>
+                    </li>
+                    <li ng-class="getTabClass(5)" ng-click="setActiveTab(5)">
+                        <a href="javascript:;" data-toggle="tab">Payment</a>
+                    </li>
+                    <li ng-class="getTabClass(3)" ng-click="setActiveTab(3)">
+                        <a href="javascript:;" data-toggle="tab">Cash</a>
+                    </li>
+                </ul>
+
+            <div class="tab-content">
+                <div ng-class="getTabPaneClass(1)">  
+                    <h3> <center>Credit Detail Report</center> </h3>
+                    <div class="form-group">
+                      <label for="">Company</label>
+                      <select class="form-control" ng-model="credit_comp_id" id="comp_id">
+                        <option value="">All</option>
+                        <option ng-repeat="data in companyList" value="{{data.comp_id}}">
+                          {{data.comp_name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Start Date</label>
+                      <input type="text" name="credit_startdate" ng-model="credit_startdate" id="credit_startdate" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                      <label>End Date</label>
+                      <input type="text" name="credit_enddate" ng-model="credit_enddate" id="credit_enddate" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm" id="btnaddUser" 
+                          ng-click="apply_credit_report()" > 
+                          <i class="fa fa-send fa-fw"></i> Apply
+                        </button> 
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                </div>       
+                
+                <div ng-class="getTabPaneClass(2)">     
+                    <h3> <center>Credit Summary Report</center> </h3>
+                    <div class="form-group">
+                      <label for="">Company</label>
+                      <select class="form-control" ng-model="summary_comp_id" id="summary_comp_id">
+                        <option value="">All</option>
+                        <option ng-repeat="data in companyList" value="{{data.comp_id}}">
+                          {{data.comp_name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="text" class="form-control" name="summary_startdate" 
+                        ng-model="summary_startdate" id="summary_startdate" autocomplete="off" >
+                    </div>
+
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="text" class="form-control" name="summary_enddate" 
+                        ng-model="summary_enddate" id="summary_enddate" autocomplete="off" >
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-sm" ng-click="summary_report()"> <i class="fa fa-fw fa-send"></i> Apply
+                        </button>
+                       <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                
+                <div ng-class="getTabPaneClass(3)">
+                    <h3> <center>Cash Report</center> </h3>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="text" class="form-control" name="cash_startdate" 
+                        ng-model="cash_startdate" id="cash_startdate" autocomplete="off" >
+                    </div>
+
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="text" class="form-control" name="cash_enddate" 
+                        ng-model="cash_enddate" id="cash_enddate" autocomplete="off" >
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-sm" ng-click="apply_cash_report()"> <i class="fa fa-fw fa-send"></i> Apply
+                        </button>
+                       <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                
+                <div ng-class="getTabPaneClass(4)"> 
+                    <h3> <center>Adjustment Report</center> </h3>    
+                    <div class="form-group">
+                      <label for="">Company</label>
+                      <select class="form-control" ng-model="adjustment_comp_id" id="adjustment_comp_id">
+                        <option value="">All</option>
+                        <option ng-repeat="data in companyList" value="{{data.comp_id}}">
+                          {{data.comp_name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Start Date</label>
+                      <input type="text" name="adjustment_startdate" ng-model="adjustment_startdate" 
+                      id="adjustment_startdate" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                      <label>End Date</label>
+                      <input type="text" name="adjustment_enddate" ng-model="adjustment_enddate" 
+                      id="adjustment_enddate" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm" id="btnaddUser" 
+                            ng-click="apply_adjustment_report()" > 
+                            <i class="fa fa-send fa-fw"></i> Apply
+                        </button> 
+                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                </div>  
+
+                <div ng-class="getTabPaneClass(5)">    
+                    <h3> <center>Payment Report</center> </h3>     
+                    <div class="form-group">
+                      <label for="">Company</label>
+                      <select class="form-control" ng-model="credit_comp_id" id="comp_id">
+                        <option value="">All</option>
+                        <option ng-repeat="data in companyList" value="{{data.comp_id}}">
+                          {{data.comp_name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Start Date</label>
+                      <input type="text" name="payment_startdate" ng-model="payment_startdate" 
+                      id="payment_startdate" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                      <label>End Date</label>
+                      <input type="text" name="payment_enddate" ng-model="payment_enddate" 
+                      id="payment_enddate" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-sm"
+                          ng-click="apply_payment_report()" > 
+                          <i class="fa fa-send fa-fw"></i> Apply
+                        </button> 
+                       <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                </div>     
+              
+              </div>
+            </div>
+        </div>
+         </form>
+     </div>
+   </div>
+</div>
+<script src="date-picker/js/moment.min.js"></script>
+<script src="date-picker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="date-picker/js/daterangepicker.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('input[name="credit_startdate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+        $('input[name="credit_enddate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+      $('input[name="summary_startdate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          locale: {
+              format: 'YYYY-MM-DD'
+          }
+      });
+      $('input[name="summary_enddate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          locale: {
+              format: 'YYYY-MM-DD'
+          }
+      });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+      $('input[name="cash_startdate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          locale: {
+              format: 'YYYY-MM-DD'
+          }
+      });
+      $('input[name="cash_enddate"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true,
+          locale: {
+              format: 'YYYY-MM-DD'
+          }
+      });
+    });
+</script>
+<script type="text/javascript">
+    $(function() {
+        $('input[name="adjustment_startdate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+        $('input[name="adjustment_enddate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+      });
+</script>
+<script type="text/javascript">
+    $(function() {
+        $('input[name="payment_startdate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+        $('input[name="payment_enddate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        });
+    });
+</script>

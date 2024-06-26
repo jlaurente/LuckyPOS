@@ -1,0 +1,101 @@
+<div class="row" ng-show = "IsAdjustment">
+    <div class="col-md-12 pull-right"> 
+      <button type="button" class="btn btn-danger btn-sm" id="exportAdjustment" >
+        <i class="fa fa-fw fa-file-pdf-o"></i> Export Excel
+      </button>    
+      <br><br>  
+      <table id="adjustment-table" class="table table-bordered table-condensed table-hover table-striped " 
+        datatable="ng" dt-instance="vm.dtInstance"  width="100%" dt-options="vm.dtOptions" 
+        dt-column-defs="vm.dtColumnDefs" >
+        <thead>
+          <tr>
+            <th>Trxn ID</th>
+            <th>Barcode No.</th>
+            <th>Adj. Type</th>
+            <th>Customer ID</th>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Added Date</th>
+            <th>Due Date</th>
+            <th>Company Name</th>
+            <th>Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="data in adjustment_report">
+            <td>{{data.id}}</td>
+            <td>{{data.cust_barcode_num}}</td>
+            <td>{{data.adjtype}}</td>
+            <td>{{data.cust_id_no}}</td>
+            <td>{{data.name}}</td>
+            <td>{{ data.amount }}</td>
+            <td>{{data.added_date}}</td>
+            <td>{{data.due_date}}</td>
+            <td>{{data.comp_name}}</td>
+            <td>{{data.reason}}</td>
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+   class csvExport {
+  constructor(table, header = true) {
+    this.table = table;
+    this.rows = Array.from(table.querySelectorAll("tr"));
+    if (!header && this.rows[0].querySelectorAll("th").length) {
+      this.rows.shift();
+    }
+    // console.log(this.rows);
+    // console.log(this._longestRow());
+  }
+
+  exportCsv() {
+    const lines = [];
+    const ncols = this._longestRow();
+    for (const row of this.rows) {
+      let line = "";
+      for (let i = 0; i < ncols; i++) {
+        if (row.children[i] !== undefined) {
+          line += csvExport.safeData(row.children[i]);
+        }
+        line += i !== ncols - 1 ? "," : "";
+      }
+      lines.push(line);
+    }
+    //console.log(lines);
+    return lines.join("\n");
+  }
+  _longestRow() {
+    return this.rows.reduce((length, row) => (row.childElementCount > length ? row.childElementCount : length), 0);
+  }
+  static safeData(td) {
+    let data = td.textContent;
+    //Replace all double quote to two double quotes
+    data = data.replace(/"/g, `""`);
+    //Replace , and \n to double quotes
+    data = /[",\n"]/.test(data) ? `"${data}"` : data;
+    return data;
+  }
+}
+
+const btnExport = document.querySelector("#exportAdjustment");
+const tableElement = document.querySelector("#adjustment-table");
+
+btnExport.addEventListener("click", () => {
+  const obj = new csvExport(tableElement);
+  const csvData = obj.exportCsv();
+  const blob = new Blob([csvData], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Adjustment.csv";
+  a.click();
+
+  setTimeout(() => {
+    URL.revokeObjectURL(url);
+  }, 500);
+});
+    </script>

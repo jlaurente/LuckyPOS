@@ -1,0 +1,15 @@
+<div class="col-sm-9" ng-show = "IsBarcode">
+  <div class="card mb-3" ng-repeat="data in barcode_list | filter:search">
+    <div class="card-body">
+      <div class="row">
+        <ul class="chat">
+          <li class="left clearfix">
+            <a ng-click="view_barcode(data.id, data.cust_barcode_num)">
+              {{data.cust_barcode_num}} | {{data.fname}} {{data.mname}} {{data.lname}} | {{data.comp_name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

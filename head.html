@@ -1,0 +1,172 @@
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+   <div class="navbar-header" style="color:white;">
+        <a class="navbar-brand" href="#/dashboard">
+            LuckyPOS System V1.0.1
+        </a>
+    </div>
+
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+
+    <ul class="nav navbar-right navbar-top-links">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                 <!-- <img alt="" width="25" height="25" src="img/home.png" class="avatar img-circle img-thumbnail" alt="avatar">  -->
+                 {{role}} - {{name}} <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu dropdown-user">
+                <li><a href="#" ng-click="logout();"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <!-- Sidebar -->
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <div ng-if="uid === '1'">
+                <ul class="nav" id="side-menu" ng-controller="navCtrl">
+                    <!-- <li>
+                        <div class="text-center" style="padding-top: 10px;">
+                            <img alt="" width="100" height="100" src="img/home.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <h5>{{role}} - {{name}}</h5>
+                        </div> 
+                    </li> -->
+                    <li ng-class="navClass('dashboard')">
+                        <a href="#/dashboard" style="color: #4d4d4d;">
+                            <i class="fa fa-dashboard fa-fw"></i> Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;" style="color: #4d4d4d;">
+                            <i class="fa fa-edit fa-fw"></i> Management<span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li ng-class="navClass('users')">
+                                <a href="#/users" style="color: #4d4d4d;">
+                                    <i class="fa fa-users fa-fw"></i> User
+                                </a>
+                            </li>
+                            <li ng-class="navClass('customer')">
+                                <a href="#/customer" style="color: #4d4d4d;">
+                                    <i class="fa fa-users fa-fw"></i> Customer
+                                </a>
+                            </li>
+                            <li ng-class="navClass('company')">
+                                <a href="#/company" style="color: #4d4d4d;">
+                                    <i class="fa fa-building fa-fw"></i> Company
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;" style="color: #4d4d4d;">
+                            <i class="fa fa-edit fa-fw"></i> Order<span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li ng-class="navClass('new_payment')">
+                                <a href="#/credit_payment" style="color: #4d4d4d;">
+                                    <i class="fa fa-circle-o fa-fw"></i> Credit
+                                </a>
+                            </li>
+                            <li ng-class="navClass('cash_payment')">
+                                <a href="#/cash_payment" style="color: #4d4d4d;">
+                                    <i class="fa fa-circle-o fa-fw"></i> Cash
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <a href="javascript:;" style="color: #4d4d4d;">
+                            <i class="fa fa-edit fa-fw"></i> Adjustment<span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-third-level">
+                            <li ng-class="navClass('credit_order_adjustment')">
+                                <a href="#/credit_order_adjustment" style="color: #4d4d4d;">
+                                    <i class="fa fa-circle-o fa-fw"></i> Credit Order
+                                </a>
+                            </li>
+                            <li ng-class="navClass('payment_adjustment')">
+                                <a href="#/payment_adjustment" style="color: #4d4d4d;">
+                                    <i class="fa fa-circle-o fa-fw"></i> Payment
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li ng-class="navClass('payment_company')">
+                        <a href="#/payment_company" style="color: #4d4d4d;">
+                            <i class="fa fa-home fa-fw"></i> Company Payment
+                        </a>
+                    </li>
+                    <li ng-class="navClass('credit_report')">
+                        <a href="#/credit_report" style="color: #4d4d4d;">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Analytics
+                        </a>
+                    </li>
+                   
+                </ul>
+            </div>
+            <div ng-if="uid === '2'">
+                          
+                <ul class="nav" id="side-menu" ng-controller="navCtrl">
+                    <!-- <li>
+                        <div class="text-center" style="padding-top: 10px">
+                            <img alt="" width="100" height="100" src="img/home.png" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <h5>{{role}} - {{name}}</h5>
+                        </div> 
+                    </li> -->
+                    <li ng-class="navClass('dashboard')">
+                        <a href="#/dashboard" style="color: #4d4d4d;">
+                            <i class="fa fa-dashboard fa-fw"></i> Dashboard
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="javascript:;" style="color: #4d4d4d;">
+                            <i class="fa fa-edit fa-fw"></i> Order<span class="fa arrow"></span>
+                        </a>
+                        <ul class="nav nav-second-level">
+                            <li ng-class="navClass('new_payment')">
+                                <a href="#/credit_payment" style="color: #4d4d4d;">
+                                    <i class="fa fa-circle-o fa-fw"></i> Credit
+                                </a>
+                            </li>
+                            <li ng-class="navClass('cash_payment')">
+                                <a href="#/cash_payment" style="color: #4d4d4d;">
+                                    <i class="fa fa-circle-o fa-fw"></i> Cash
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <li ng-class="navClass('credit_report')">
+                        <a href="#/credit_report" style="color: #4d4d4d;">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Analytics
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+</nav> 
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="js/startmin.js"></script>

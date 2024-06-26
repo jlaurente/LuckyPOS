@@ -1,0 +1,61 @@
+<div class="col-sm-9" >
+  <div class="card mb-3" ng-repeat="cust in custList">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-3">
+          <label class="mb-0"><strong>Full Name</strong></label>
+        </div>
+        <div class="text-secondary">
+          {{cust.fname}} {{cust.mname}} {{cust.lname}}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <label class="mb-0">Company Name</label>
+        </div>
+        <div class="text-secondary">
+          {{cust.comp_name}}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <label class="mb-0">Customer ID</label>
+        </div>
+        <div class="text-secondary">
+          {{cust.cust_id}}
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-3">
+          <label class="mb-0">Company ID</label>
+        </div>
+        <div class="text-secondary">
+          {{cust.comp_id}}
+        </div>
+      </div>
+      <hr>
+
+      <form name="signupForm" role="form"> 
+        <div class="row">
+          <div class="col-sm-2">
+            <label class="mb-0">Amount</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" ng-model="cust.amount_pay" class="form-control" 
+            placeholder="Enter amount" required focus>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-success btn-lg btn-block" 
+            data-ng-disabled="signupForm.$invalid" ng-click="addCreditPayment(cust)"> Proceed to payment </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div><!--/col-9-->

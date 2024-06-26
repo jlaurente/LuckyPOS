@@ -1,0 +1,78 @@
+<div class="row" ng-show = "VisibleDuedate">
+  <div class="form-group col-md-12">
+     <table id="user_info" class="table table-bordered table-striped">
+        <tbody>
+          <tr>
+            <th colspan="6">Purchases</th>
+            <th ng-repeat="Purchases in PurchasesList">
+              {{Purchases.curr_purchase ? Purchases.curr_purchase : '0.00'}}
+            </th>
+            <th colspan="6">Prev. Purchases</th>
+            <th ng-repeat="Purchases in PrevPurchasesList">
+              {{Purchases.prev_purchase ? Purchases.prev_purchase : '0.00'}}
+            </th>
+          </tr>
+          <tr>
+            <th colspan="6">Payments</th>
+            <th ng-repeat="Payments in PaymentsList">
+              {{Payments.curr_payment ? Payments.curr_payment : '0.00'}}
+            </th>
+            <th colspan="6">Prev. Payments</th>
+            <th ng-repeat="Payments in PrevPaymentsList">
+              {{Payments.prev_payment ? Payments.prev_payment : '0.00'}}
+            </th>
+          </tr>
+           <tr>
+            <th colspan="6">Credit Adjustment</th>
+            <th ng-repeat="CreditAdjustment in CreditList">
+              {{CreditAdjustment.curr_cred_adj ? CreditAdjustment.curr_cred_adj : '0.00'}}
+            </th>
+            <th colspan="6">Prev. Credit Adjustment</th>
+            <th ng-repeat="CreditAdjustment in PrevCreditList">
+              {{CreditAdjustment.prev_cred_adj ? CreditAdjustment.prev_cred_adj : '0.00'}}
+            </th>
+          </tr>
+           <tr>
+            <th colspan="6">Debit Adjustment</th>
+            <th ng-repeat="DebitAdjustment in DebitList">
+              {{DebitAdjustment.curr_deb_adj ? DebitAdjustment.curr_deb_adj : '0.00'}}
+            </th>
+            <th colspan="6">Prev. Debit Adjustment</th>
+            <th ng-repeat="DebitAdjustment in PrevDebitList">
+              {{DebitAdjustment.prev_deb_adj ? DebitAdjustment.prev_deb_adj : '0.00'}}
+            </th>
+          </tr>
+          <tr>
+            <th colspan="6">Subtotal</th>
+            <th>{{SubtotalList ? SubtotalList : '0.00'}}</th>
+            <th colspan="6">Previous Subtotal</th>
+            <th>{{PrevSubtotalList ? PrevSubtotalList : '0.00'}}</th>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+           <th colspan="13">Total Due</th>
+           <th >{{DueDate ? DueDate : '0.00'}}</th>
+          </tr>
+          <tr>
+            <th >Enter Payment</th>
+            <th colspan="13">
+              <form name="signupForm" role="form">
+                <div class="form-group input-group">
+                  <input type="text" class="form-control" name="paymentDue" 
+                   ng-model="paymentDue" id="paymentDue" autocomplete="off" 
+                   placeholder="Enter payment here" required>
+                  <span class="input-group-btn">
+                    <button class="btn btn-danger" ng-click="btnSubmit()" 
+                      data-ng-disabled="signupForm.$invalid"> 
+                      <i class="fa fa-fw fa-check"></i> Submit
+                    </button>
+                  </span>
+                </div> 
+              </form>
+            </th>
+          </tr>
+       </tfoot>
+    </table>
+  </div>
+</div>

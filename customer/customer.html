@@ -1,0 +1,70 @@
+<style>
+.selected {
+    color:#008080;
+    font-weight:bold;
+}
+</style>
+<div id="page-wrapper">
+  <div ng-include="'head.html'"></div>
+  <br>
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 style="color: #666666;"><i class="fa fa-users"></i> Customer Management</h3>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-home"></i><a href="#/dashboard"> Home</a></li>
+        <li><i class="fa fa-users"></i> Customer Management</li>
+      </ol>
+      <div class="pull-left">
+        <a href="#/new_customer" class="btn btn-success btn-sm">
+            <i class="fa fa-user-plus"></i> New Customer
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <div class="row">
+    <div class="form-group col-lg-12">
+      <table class="table table-bordered table-condensed table-hover table-striped " datatable="ng"
+         dt-instance="vm.dtInstance"  width="100%" dt-options="vm.dtOptions" dt-column-defs="vm.dtColumnDefs" >
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Barcode No.</th>
+              <th>Customer ID</th>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Last Name </th>
+              <th>Company Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="customer in customerList" ng-class="{'warning':$index == selectedRow}" ng-click="setClickedRow($index)">
+              <td>{{customer.id}}</td>
+              <td>{{customer.cust_barcode_num}}</td>
+              <td>{{customer.cust_id}}</td>
+              <td>{{customer.fname}}</td>
+              <td>{{customer.mname}}</td>
+              <td>{{customer.lname}}</td>
+              <td>{{customer.comp_name}}</td>
+              <td>
+                <div >
+                  <a ng-href="#/edit_customer/{{customer.id}}" class="btn btn-xs btn-default">
+                    <i class="fa fa-edit"></i>
+                  </a>
+                  <button class="btn btn-xs btn-default" ng-click="deleteUser(customer.id)">
+                    <i class="fa fa-trash"></i>
+                  </button>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+  

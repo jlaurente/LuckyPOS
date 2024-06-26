@@ -1,0 +1,53 @@
+<div class="col-sm-9" >
+  <div class="card mb-3" ng-repeat="cust in custList">
+    <div class="card-body">
+      <form name="signupForm" role="form">
+        <!-- <div class="row">
+          <div class="col-sm-3">
+            <label class="mb-0">Company Name</label>
+          </div>
+          <div class="text-secondary">
+            {{cust.comp_name}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="mb-0">Company ID</label>
+          </div>
+          <div class="text-secondary" ng-model="cust.comp_id">
+            {{cust.comp_id}}
+          </div>
+        </div>
+        <hr>  -->
+
+        <div class="form-group">
+          <label for="">Enter Transaction ID</label>
+          <input type="text" ng-model="cust.trxn_id" class="form-control" 
+            placeholder="Enter Transaction ID" required >
+        </div>
+        <div class="form-group">
+          <label for="">Adjustment Type</label>
+          <select class="form-control form-line" ng-model="cust.type" required>
+            <option value="Credit">Credit</option>
+            <option value="Debit">Debit</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="">Enter Amount</label>
+          <input type="text" ng-model="cust.amount" class="form-control" 
+            placeholder="Enter amount" required >
+        </div>
+        <div class="form-group">
+          <label for="">Enter Reason</label>
+          <textarea type="text" ng-model="cust.reason" class="form-control" 
+            placeholder="Enter reason" required > </textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-lg btn-block" 
+          ng-click="CreditOrderAdjustment(cust)"> Proceed to adjustment </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div><!--/col-9-->
